@@ -1,0 +1,23 @@
+import urllib2
+from bs4 import BeautifulSoup 
+
+#page = urllib2.urlopen('https://www.zomato.com/pune/restaurants/street-food?page=8')
+
+#page_content = page.read()
+
+#with open('page_content.html', 'w') as fid:
+# fid.write(page_content)
+
+page = urllib2.urlopen("file:///C:\Python27\my_prog\page_content.html").read()
+
+#print page
+
+soup = BeautifulSoup(page,"html.parser")
+
+name = soup.findAll('div',{'class':'col-s-12'})[0].get_text()
+address = soup.findAll('div',{'class':'row'})[0].get_text()
+
+strdata = (name).encode('utf-8')
+address = (address).encode('utf-8')
+
+print strdata,address
